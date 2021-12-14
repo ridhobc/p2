@@ -57,7 +57,7 @@ class P2IntelLpti extends \yii\db\ActiveRecord
             [['no_lpti', 'kd_kantor'], 'string', 'max' => 10],
             [['sumber_info'], 'string', 'max' => 200],
             [['metode_pengumpulan_info', 'titik_koordinat', 'perkiraan_tempat_pelanggaran', 'perkiraan_pelaku'], 'string', 'max' => 100],
-            [['jenis_dok_pbc', 'perkiraan_waktu_pelanggaran', 'nip_pembuat'], 'string', 'max' => 45],
+            [['jenis_dok_pbc', 'perkiraan_waktu_pelanggaran', 'nip_pembuat','no_tgl_dok_pbc'], 'string', 'max' => 45],
         ];
     }
 

@@ -1,31 +1,58 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+use backend\modules\psp\models\Psp;
+use miloschuman\highcharts\Highcharts;
+use yii\bootstrap\Modal;
+use kartik\grid\GridView;
+use yii\helpers\ArrayHelper;
+use kartik\editable\Editable;
+use kartik\dynagrid;
+use kartik\export\ExportMenu;
+use yii\helpers\Url;
+use kartik\money\MaskMoney;
 
-/* @var $this yii\web\View */
-/* @var $searchModel backend\modules\p2\models\P2IntelLppiSearch */
-/* @var $dataProvider yii\data\ActiveDataProvider */
-
-$this->title = 'Lembar Pengumpulan dan Penilaian Informasi';
+$this->title = Yii::t('app', 'Laporan Pelaksanaan Tugas Intelijen');
 $this->params['breadcrumbs'][] = $this->title;
+$this->registerCss(".disp-count{cursor:default;} .disp-count:hover {background-color:none !important}");
 ?>
-<div class="p2-intel-lppi-index">
+
+<?php
+
+Modal::begin([
+    'header' => '<h4>PSP</h4>',
+    'id' => 'myModal',
+    'size' => 'modal-lg',
+]);
+echo "<div id='modalContent'></div>";
+Modal::end();
+
+$gridColumns = [
+    ['class' => 'yii\grid\SerialColumn'],
+    [
+        'class' => 'kartik\grid\ExpandRowColumn',
+        'value' => function ($model, $key, $index, $column) {
+            return GridView::ROW_COLLAPSED;
+        },
+        'detail' => function ($model, $key, $index, $column) {
+            $searchModel = new backend\modules\p2\models\P2IntelLppiDetailSearch([
+                'lppi_id' => $model->id,
+            ]);
+
+            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+            $modellppi = \backend\modules\p2\models\P2IntelLppi::find()
+                    ->where(['id' => $model->id])
+                    ->one();
 
 
-    <p>
-        <?= Html::a('Rekam', ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
+            return YII::$app->controller->renderPartial('_lppi-detail', [
 
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <?=
-    GridView::widget([
-        'dataProvider' => $dataProvider,
-        'filterModel' => $searchModel,
-        'columns' => [
-            ['class' => 'yii\grid\SerialColumn'],
-            
+                        'searchModel' => $searchModel,
+                        'dataProvider' => $dataProvider,
+                'modellppi' => $modellppi,
+            ]);
+        },
+            ],
             [
                 'attribute' => 'kd_kantor',
                 'value' => function ($data) {
@@ -44,25 +71,74 @@ $this->params['breadcrumbs'][] = $this->title;
                     return $data->sumberinfo->nm_sumber;
                 }
             ],
-           
             'media',
             'tgl_terima',
             'no_dok',
             'tgl_dok',
             'penerima_info_id',
-            //'penilai_info_id',
-            //'kesimpulan:ntext',
-            //'disposisi_id',
-            //'tgl_disposisi',
-            //'tindak_lanjut_id',
-            //'catatan:ntext',
-            //'pejabat_id',
-            //'status_pejabat',
-            //'jabatan_ttd',
             ['class' => 'yii\grid\ActionColumn'],
-        ],
-    ]);
-    ?>
+        ];
+        $fullExportMenu = ExportMenu::widget([
+                    'dataProvider' => $dataProvider,
+                    'columns' => $gridColumns,
+                    'target' => ExportMenu::TARGET_POPUP,
+//            'messages'=> 'downloadProgress',
+                    'fontAwesome' => true,
+                    //'pjaxContainerId' => 'kv-pjax-container',
+                    'dropdownOptions' => [
+                        'label' => 'Full',
+                        'class' => 'btn btn-danger',
+                        'itemsBefore' => [
+                            '<li class="dropdown-header">Export All Data</li>',
+                        ],
+                    ],
+        ]);
+        echo GridView::widget([
+            'dataProvider' => $dataProvider,
+            'filterModel' => $searchModel,
+            'columns' => $gridColumns,
+            'pjax' => false,
+            'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container']],
+            'panel' => [
+                'type' => GridView::TYPE_PRIMARY,
+                'heading' => '<h3 class="panel-title"><i class="glyphicon glyphicon-file"></i> Laporan Pelaksanaan Tugas Intelijen</h3>',
+            ],
+// your toolbar can include the additional full export menu
+            'toolbar' => [
+
+                $fullExportMenu,
+                ['content' =>
+                    Html::a('<i class="glyphicon glyphicon-plus"></i> Rekam ', ['create'], ['class' => 'btn btn-success']) . ' ' .
+////            Html::button('<i class="glyphicon glyphicon-plus"></i> Create Surat Masuk', ['value' => Url::to('index.php?r=surat-masuk/create'), 'class' => 'btn btn-success', 'id' => 'modalButton']) . ' ' .
+                    Html::a('<i class="glyphicon glyphicon-repeat"></i>', ['index'], [
+                        'data-pjax' => 0,
+                        'class' => 'btn btn-info',
+                        'title' => Yii::t('kvgrid', 'Refresh')
+                    ])
+                ],
+            ],
+            'export' => [
+                'messages' => 'allowPopups',
+            ],
+        ]);
+        ?>
 
 
-</div>
+
+        <?php
+
+        $this->registerJs("
+    $('#myModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget)
+        var modal = $(this)
+        var title = button.data('title') 
+        var href = button.attr('href') 
+        modal.find('.modal-title').html(title)
+        modal.find('.modal-body').html('<i class=\"fa fa-spinner fa-spin\"></i>')
+        $.post(href)
+            .done(function( data ) {
+                modal.find('.modal-body').html(data)
+            });
+        })
+");
+        ?>

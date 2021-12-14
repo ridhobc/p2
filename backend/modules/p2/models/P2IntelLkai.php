@@ -57,11 +57,11 @@ class P2IntelLkai extends \yii\db\ActiveRecord {
         return [
             [['tgl_lkai', 'tgl_lppi', 'tgl_lpti', 'tgl_npi', 'keputusan_angsung_tgl_terima', 'keputusan_atasan_angsung_tgl_terima'], 'safe'],
             [['ikhtisar_informasi_lkai', 'prosedur_analisis_lkai', 'hasil_analisis_lkai', 'rekomendasi_lainnya_ur', 'informasi_lainnya_ur', 'keputusan_angsung_cat', 'keputusan_atasan_angsung_cat'], 'string'],
-            [['no_lkai',  'no_npi', 'kesimpulan_lkai', 'analis_lkai_nip', 'keputusan_angsung_nip', 'keputusan_atasan_angsung_nip'], 'string', 'max' => 45],
+            [['no_lkai',  'no_npi', 'kesimpulan_lkai', 'analis_lkai_nip', 'keputusan_angsung_nip', 'keputusan_atasan_angsung_nip','kd_kantor'], 'string', 'max' => 45],
             [['dok_sumber_lppi', 'dok_sumber_lpti', 'dok_sumber_npi'], 'string', 'max' => 2],
             [['rekomendasi_lkai_id', 'informasi_lainnya_id'], 'string', 'max' => 10],
             [['tujuan_lkai'], 'string', 'max' => 100],
-            [['keputusan_angsung_id', 'keputusan_atasan_angsung_id'], 'string', 'max' => 5],
+            [['keputusan_angsung_id', 'keputusan_atasan_angsung_id'], 'string', 'max' => 10],
             [['no_lppi_id','no_lppi_id'], 'integer'],
             [['created_at', 'created_by', 'updated_at', 'updated_by'], 'integer'],
         ];
@@ -86,7 +86,7 @@ class P2IntelLkai extends \yii\db\ActiveRecord {
             'prosedur_analisis_lkai' => 'Prosedur Analisis Lkai',
             'hasil_analisis_lkai' => 'Hasil Analisis Lkai',
             'kesimpulan_lkai' => 'Kesimpulan Lkai',
-            'rekomendasi_lkai_id' => 'Rekomendasi Lkai ID',
+           
             'rekomendasi_lainnya_ur' => 'Rekomendasi Lainnya Ur',
             'informasi_lainnya_id' => 'Informasi Lainnya ID',
             'informasi_lainnya_ur' => 'Informasi Lainnya Ur',
@@ -105,6 +105,10 @@ class P2IntelLkai extends \yii\db\ActiveRecord {
             'updated_at' => 'Updated At',
             'updated_by' => 'Updated By',
         ];
+    }
+    
+    public function getKantor() {
+        return $this->hasOne(\backend\modules\setting\models\DbKantor::className(), ['kd_kantor' => 'kd_kantor']);
     }
     
     public function behaviors() {

@@ -22,8 +22,8 @@ use yii\widgets\ActiveForm;
             <div class="clearfix"></div>
         </div>
         <div class="x_content">
-            <br />
-
+           
+            <h2>Pilih Surat Tugas Intelijen</h2>
             <?php $form = ActiveForm::begin(); ?>
 
             <div class="row">
@@ -46,85 +46,7 @@ use yii\widgets\ActiveForm;
                     ?>
                 </div>
             </div>
-            <div class="row">
-                
-                <div class="col-md-4">
-                    <?= $form->field($model, 'sumber_info')->textarea(['rows' => 6]) ?>
-                </div>
-                <div class="col-md-4">
-                    <?= $form->field($model, 'metode_pengumpulan_info')->textarea(['rows' => 6]) ?>
-                </div>
-                <div class="col-md-4">
-                     <?= $form->field($model, 'ikhtisar_informasi')->textarea(['rows' => 6]) ?>                    
-                </div>                
-            </div>
-            <div class="row">                
-                <div class="col-md-4">
-                    <?= $form->field($model, 'jenis_dok_pbc')->textInput(['maxlength' => true]) ?>
-                </div>
-                <div class="col-md-4">
-                    <?= $form->field($model, 'metode_analisa_intelijen')->textInput(['maxlength' => true]) ?>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-12">
-                     <?= $form->field($model, 'ikhtisar_hasil')->textarea(['rows' => 6]) ?>                    
-                </div> 
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-                    <?= $form->field($model, 'jenis_pelanggaran')->textInput(['maxlength' => true]) ?>
-                </div>
-                <div class="col-md-6">
-                    <?= $form->field($model, 'modus_pelanggaran')->textInput(['maxlength' => true]) ?>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-3">
-                    <?= $form->field($model, 'titik_koordinat')->textInput(['maxlength' => true]) ?>
-                </div>
-                <div class="col-md-3">
-                    <?= $form->field($model, 'perkiraan_tempat_pelanggaran')->textInput(['maxlength' => true]) ?>
-                </div>
-                <div class="col-md-3">
-                    <?= $form->field($model, 'perkiraan_waktu_pelanggaran')->textInput(['maxlength' => true]) ?>
-                </div>
-                <div class="col-md-3">
-                    <?= $form->field($model, 'perkiraan_pelaku')->textInput(['maxlength' => true]) ?>
-                </div>
-            </div>
             
-            <div class="row">
-                <div class="col-md-12">
-                     <?= $form->field($model, 'info_lainnya')->textarea(['rows' => 6]) ?> 
-                  
-                </div>
-                
-            </div>
-            <div class="row">
-                 <div class="col-md-6">
-                    <?= $form->field($model, 'lpti_simpulan')->textarea(['rows' => 6]) ?>
-                </div>
-                <div class="col-md-6">
-                    <?= $form->field($model, 'lpti_rekom')->textarea(['rows' => 6]) ?>
-                    
-                </div>
-                <div class="col-md-6">
-
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-
-
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-md-6">
-
-
-                </div>
-            </div>
 
             <div class="ln_solid"></div>
             <div class="item form-group">

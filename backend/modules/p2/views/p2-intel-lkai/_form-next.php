@@ -101,10 +101,10 @@ use kartik\checkbox\CheckboxX;
                     ])->label(false);
                     ?>
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-3">
                     <?= $form->field($model, 'no_npi')->textInput(['maxlength' => true]) ?>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-5">
                     <?=
                     $form->field($model, 'tgl_npi')->widget(\kartik\widgets\DatePicker::className(), [
                         'options' => ['placeholder' => 'Tgl Dokumen..'],

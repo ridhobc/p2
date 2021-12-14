@@ -168,16 +168,16 @@ use kartik\checkbox\CheckboxX;
                     <?= $form->field($model, 'kesimpulan_lkai')->textarea(['rows' => 6]) ?>
                 </div>                
             </div>
-            <div class="row"> 
-                <div class="col-md-3">
+            <div class="row">                   
+                <div class="col-md-6">
                     <?php
                     //= $form->field($model, 'training_id')->textInput()
                     $rekom = [
 
                         'ni' => 'Nota Informasi (NI)',
-                        'nhi' => 'Nota Hasil Intelijen (NHI',
+                        'nhi' => 'Nota Hasil Intelijen (NHI)',
                         'lain' => 'Rekomendasi Lainnya'
-                        . ')'
+                        
                     ];
                     echo $form->field($model, 'rekomendasi_lkai_id')->widget(\kartik\widgets\Select2::classname(), [
                         'data' => $rekom,
@@ -190,8 +190,29 @@ use kartik\checkbox\CheckboxX;
                     ]);
                     ?>
 
-                </div>               
+                </div>  
+               
             </div>
+            <div class="row">
+                <div class="col-md-12">
+                     <?= $form->field($model, 'rekomendasi_lainnya_ur')->textarea(['rows' => 6]) ?>
+                </div> 
+            </div>
+            <div class="row">
+                    <div class="col-md-3">
+                        <?=
+                        $form->field($model, 'informasi_lainnya_id')->widget(CheckboxX::classname(), [
+                            'initInputType' => CheckboxX::INPUT_CHECKBOX,
+                            'autoLabel' => true,
+                            
+                        ])->label(false);
+                        ?>
+                    </div>
+                    <div class="col-md-9">
+                        <?= $form->field($model, 'informasi_lainnya_ur')->textarea(['rows' => 6]) ?>
+                    </div>
+                    
+                </div>
             <div class="ln_solid"></div>
             <div class="item form-group">
                 <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>

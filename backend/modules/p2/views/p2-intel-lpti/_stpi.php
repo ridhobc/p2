@@ -1,7 +1,9 @@
 <?php
 
 use yii\helpers\Html;
-use yii\grid\GridView;
+//use yii\grid\GridView;
+use kartik\detail\DetailView;
+use kartik\grid\GridView;
 
 /* @var $this yii\web\View */
 /* @var $searchModel backend\models\SuratmasukArsipDetailSearch */
@@ -10,55 +12,104 @@ use yii\grid\GridView;
 
 
 <div class="main_container">
-    <div class="col-md-6 col-sm-6  ">
-                <div class="x_panel">
-                  <div class="x_title">
-                    <h2><i class="fa fa-bars"></i> Tabs <small>Float left</small></h2>
-                    <ul class="nav navbar-right panel_toolbox">
-                      <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                      </li>
-                      <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <a class="dropdown-item" href="#">Settings 1</a>
-                            <a class="dropdown-item" href="#">Settings 2</a>
-                          </div>
-                      </li>
-                      <li><a class="close-link"><i class="fa fa-close"></i></a>
-                      </li>
-                    </ul>
-                    <div class="clearfix"></div>
-                  </div>
-                  <div class="x_content">
 
-                    <ul class="nav nav-tabs bar_tabs" id="myTab" role="tablist">
-                      <li class="nav-item">
-                        <a class="nav-link active" id="home-tab" data-toggle="tab" href="#st" role="tab" aria-controls="st" aria-selected="true">Surat Tugas</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" id="profile-tab" data-toggle="tab" href="#ur_pelaksanaan_tugas" role="tab" aria-controls="ur_pelaksanaan_tugas" aria-selected="false">Ur. Pelks. Tugas</a>
-                      </li>
-                      <li class="nav-item">
-                        <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Contact</a>
-                      </li>
-                    </ul>
-                    <div class="tab-content" id="myTabContent">
-                      <div class="tab-pane fade show active" id="st" role="tabpanel" aria-labelledby="home-tab">
-                        Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher
-                            synth. Cosby sweater eu banh mi, qui irure terr.
-                      </div>
-                      <div class="tab-pane fade" id="ur_pelaksanaan_tugas" role="tabpanel" aria-labelledby="profile-tab">
-                        Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo
-                            booth letterpress, commodo enim craft beer mlkshk aliquip
-                      </div>
-                      <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
-                        xxFood truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo
-                            booth letterpress, commodo enim craft beer mlkshk 
-                      </div>
+    <div class="col-md-12 col-sm-12  ">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2><i class="fa fa-bars"></i> STPI </h2>
+                <ul class="nav navbar-right panel_toolbox">
+                    <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                    </li>
+
+                    <li><a class="close-link"><i class="fa fa-close"></i></a>
+                    </li>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <ul class="nav nav-tabs ">
+
+                    <li class="active"><a href="#stpi" data-toggle="tab"><?php echo Yii::t('app', 'ST-I') ?></a></li>
+                    <li class=""><a href="#petugas" data-toggle="tab"><?php echo Yii::t('app', 'Petugas') ?></a></li>
+
+
+                </ul>
+                <div class="tab-content">
+                    <br/>
+                    <!-- Pagu -->                      
+                    <div class="tab-pane active" id="stpi">
+                        <div class="row">
+                            <?=
+                            DetailView::widget([
+                                'model' => $modelstpi,
+                                'condensed' => true,
+                                'hover' => true,
+                                'bootstrap' => true,
+                                'bordered' => true,
+                                'responsive' => true,
+                                'mode' => DetailView::MODE_VIEW,
+                                'panel' => [
+                                    'heading' => 'Surat Tugas  # ' . $modelstpi->tgl_rekam,
+                                    'type' => DetailView::TYPE_INFO,
+                                ],
+//        'buttons1' => '{update} {delete}',        //untuk menambahkan tombol edit dan delete. untuk delete tambahkan {delete}
+                                'buttons1' => '', //untuk menambahkan tombol edit dan delete. untuk delete tambahkan {delete}
+                                'attributes' => [
+
+                                    'no_stpi',
+                                    [
+                                        'attribute' => 'tgl_rekam',
+                                        'format' => ['date', 'php:d M Y']
+                                    ],
+                                    'periode_penugasan',
+                                    'uraian_tugas',
+                                    'wilayah_penugasan',
+                                    [
+                                        'attribute' => 'pejabat_id',
+                                        'value' => $modelstpi->pejabatttd->nm_pejabat,
+                                    ],
+                                ],
+                            ])
+                            ?>
+                        </div>
                     </div>
-                  </div>
+                    <div class="tab-pane " id="petugas">
+                         <br/>
+                        <div class="row">
+                            <?=
+                            GridView::widget([
+                                'dataProvider' => $dataProvider,
+                                'pjax' => true,
+                                'striped' => true,
+                                'hover' => true,
+                                'columns' => [
+                                    ['class' => 'yii\grid\SerialColumn'],
+                                    'nip_pegawai',
+//                                       
+                                    [
+                                        'attribute' => 'Nama Kantor',
+                                        'value' => function ($data) {
+                                            return $data->kantor->nm_kantor;
+                                        }
+                                    ],
+                                    'nip_pegawai'
+//                                [
+//                                    'attribute' => 'Nama',
+//                                    'value' => function ($data) {
+//                                        return $data->petugas->nama_petugas;
+//                                    }
+//                                ],
+                                ],
+                            ]);
+                            ?>
+                        </div>
+                    </div>
+
                 </div>
-              </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 

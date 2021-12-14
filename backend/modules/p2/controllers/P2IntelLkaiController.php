@@ -8,26 +8,25 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use yii;
+
 /**
  * P2IntelLkaiController implements the CRUD actions for P2IntelLkai model.
  */
-class P2IntelLkaiController extends Controller
-{
+class P2IntelLkaiController extends Controller {
+
     /**
      * @inheritDoc
      */
-    public function behaviors()
-    {
+    public function behaviors() {
         return array_merge(
-            parent::behaviors(),
-            [
-                'verbs' => [
-                    'class' => VerbFilter::className(),
-                    'actions' => [
-                        'delete' => ['POST'],
-                    ],
+                parent::behaviors(), [
+            'verbs' => [
+                'class' => VerbFilter::className(),
+                'actions' => [
+                    'delete' => ['POST'],
                 ],
-            ]
+            ],
+                ]
         );
     }
 
@@ -35,27 +34,34 @@ class P2IntelLkaiController extends Controller
      * Lists all P2IntelLkai models.
      * @return mixed
      */
-    public function actionIndex()
-    {
+    public function actionIndex() {
         $searchModel = new P2IntelLkaiSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
         return $this->render('index', [
-            'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+        'searchModel' => $searchModel,
+        'dataProvider' => $dataProvider,
         ]);
-    }
+        }
 
-    /**
-     * Displays a single P2IntelLkai model.
-     * @param int $id ID
-     * @return mixed
-     * @throws NotFoundHttpException if the model cannot be found
-     */
-    public function actionView($id)
-    {
+        /**
+         * Displays a single P2IntelLkai model.
+         * @param int $id ID
+         * @return mixed
+         * @throws NotFoundHttpException if the model cannot be found
+         */
+        public function actionView($id)
+        {
+        $model = $this->findModel($id);
+        $modelview = $this->findModel($id);
+
+        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+        return $this->redirect(['view', 'id' => $model->id]);
+        }
+
         return $this->render('view', [
-            'model' => $this->findModel($id),
+                    'model' => $model,
+             'modelview' => $modelview,
         ]);
     }
 
@@ -64,12 +70,14 @@ class P2IntelLkaiController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
-    {
+    public function actionCreate() {
         $model = new P2IntelLkai();
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
+            if ($model->load(Yii::$app->request->post())) {
+                $model->kd_kantor = \Yii::$app->user->identity->kd_kantor;
+                $model->save();
+                Yii::$app->session->setFlash('success', 'berhasil direkam');
                 return $this->redirect(['next', 'id' => $model->id]);
             }
         } else {
@@ -77,18 +85,17 @@ class P2IntelLkaiController extends Controller
         }
 
         return $this->render('create', [
-            'model' => $model,
+                    'model' => $model,
         ]);
     }
 
-    public function actionNext($id)
-    {
+    public function actionNext($id) {
         $model = $this->findModel($id);
-        
+
 
         if ($this->request->isPost) {
             if ($model->load(Yii::$app->request->post())) {
-                
+
 
                 //simpan ke database
                 $model->save();
@@ -100,12 +107,11 @@ class P2IntelLkaiController extends Controller
         }
 
         return $this->render('next', [
-            'model' => $model,
+                    'model' => $model,
         ]);
     }
-    
-    public function actionNext1($id)
-    {
+
+    public function actionNext1($id) {
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
@@ -113,9 +119,10 @@ class P2IntelLkaiController extends Controller
         }
 
         return $this->render('next1', [
-            'model' => $model,
+                    'model' => $model,
         ]);
     }
+
     /**
      * Updates an existing P2IntelLkai model.
      * If update is successful, the browser will be redirected to the 'view' page.
@@ -123,8 +130,7 @@ class P2IntelLkaiController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id)
-    {
+    public function actionUpdate($id) {
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
@@ -132,7 +138,7 @@ class P2IntelLkaiController extends Controller
         }
 
         return $this->render('update', [
-            'model' => $model,
+                    'model' => $model,
         ]);
     }
 
@@ -143,8 +149,7 @@ class P2IntelLkaiController extends Controller
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id)
-    {
+    public function actionDelete($id) {
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
@@ -157,12 +162,12 @@ class P2IntelLkaiController extends Controller
      * @return P2IntelLkai the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
-    {
+    protected function findModel($id) {
         if (($model = P2IntelLkai::findOne($id)) !== null) {
             return $model;
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
+
 }

@@ -35,8 +35,11 @@ $gridColumns = [
             return GridView::ROW_COLLAPSED;
         },
         'detail' => function ($model, $key, $index, $column) {
-            $searchModel = new backend\modules\p2\models\P2IntelStpiSearch([
-                'id' => $model->stpi_id,
+             $modelstpi = \backend\modules\p2\models\P2IntelStpi::find()
+                    ->where(['id' => $model->stpi_id])
+                    ->one();
+            $searchModel = new backend\modules\p2\models\P2IntelStpiPetugasSearch([
+                'id_intel_stpi' => $model->stpi_id,
             ]);
 
             $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
@@ -45,6 +48,7 @@ $gridColumns = [
             return YII::$app->controller->renderPartial('_stpi', [
                         'searchModel' => $searchModel,
                         'dataProvider' => $dataProvider,
+                'modelstpi' => $modelstpi,
             ]);
         },
             ],

@@ -8,6 +8,7 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 use Yii;
+
 /**
  * P2IntelLptiController implements the CRUD actions for P2IntelLpti model.
  */
@@ -52,10 +53,10 @@ class P2IntelLptiController extends Controller {
     public function actionView($id) {
         $model = $this->findModel($id);
         $modelstpi = \backend\modules\p2\models\P2IntelStpi::find()
-                    ->where([
-                        'id' => $model->stpi_id, //status aktif
-                    ])
-                    ->one();
+                ->where([
+                    'id' => $model->stpi_id, //status aktif
+                ])
+                ->one();
         return $this->render('view', [
                     'model' => $this->findModel($id),
                     'modelstpi' => $modelstpi,
@@ -69,15 +70,15 @@ class P2IntelLptiController extends Controller {
      */
     public function actionCreate() {
         $model = new P2IntelLpti();
-        
+
         if ($this->request->isPost) {
             if ($model->load(Yii::$app->request->post())) {
                 $model->kd_kantor = \Yii::$app->user->identity->kd_kantor;
 
                 //simpan ke database
                 $model->save();
-                  Yii::$app->session->setFlash('success', 'berhasil direkam');
-                return $this->redirect(['view', 'id' => $model->id]);
+                Yii::$app->session->setFlash('success', 'berhasil direkam');
+                return $this->redirect(['next', 'id' => $model->id]);
             }
         } else {
             $model->loadDefaultValues();
@@ -86,6 +87,28 @@ class P2IntelLptiController extends Controller {
 
         return $this->render('create', [
                     'model' => $model,
+        ]);
+    }
+
+    public function actionNext($id) {
+        $model = $this->findModel($id);
+        $modelstpi = \backend\modules\p2\models\P2IntelStpi::find()
+                ->where(['id' => $model->stpi_id])
+                ->one();
+        $searchModel = new \backend\modules\p2\models\P2IntelStpiPetugasSearch([
+            'id_intel_stpi' => $model->stpi_id,
+        ]);
+        $dataProvider = $searchModel->search($this->request->queryParams);
+        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+            Yii::$app->session->setFlash('warning', 'Data berhasil diubah');
+            return $this->redirect(['view', 'id' => $model->id]);
+        }
+
+        return $this->render('next', [
+                    'model' => $model,
+                    'modelstpi' => $modelstpi,
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -100,8 +123,8 @@ class P2IntelLptiController extends Controller {
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-             Yii::$app->session->setFlash('warning', 'Data berhasil diubah');
-            return $this->redirect(['view', 'id' => $model->id]);
+            Yii::$app->session->setFlash('warning', 'Data berhasil diubah');
+            return $this->redirect(['next', 'id' => $model->id]);
         }
 
         return $this->render('update', [
@@ -138,6 +161,7 @@ class P2IntelLptiController extends Controller {
                     'model' => $this->findModel($id),
         ]);
     }
+
     /**
      * Deletes an existing P2IntelLpti model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
@@ -147,7 +171,7 @@ class P2IntelLptiController extends Controller {
      */
     public function actionDelete($id) {
         $this->findModel($id)->delete();
-         Yii::$app->session->setFlash('warning', 'Data berhasil dihapus');
+        Yii::$app->session->setFlash('warning', 'Data berhasil dihapus');
         return $this->redirect(['index']);
     }
 

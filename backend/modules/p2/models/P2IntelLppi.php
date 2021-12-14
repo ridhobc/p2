@@ -65,6 +65,7 @@ class P2IntelLppi extends \yii\db\ActiveRecord
         return [
             'id' => 'ID',
             'kd_kantor' => 'Kd Kantor',
+            'no_lppi' => 'No Lppi',
             'tgl_lppi' => 'Tgl Lppi',
             'kategori_lppi_id' => 'Kategori Lppi ID',
             'sumber_info_id' => 'Sumber Info ID',
@@ -82,7 +83,7 @@ class P2IntelLppi extends \yii\db\ActiveRecord
             'pejabat_id' => 'Pejabat ID',
             'status_pejabat' => 'Status Pejabat',
             
-            'no_lppi' => 'No Lppi',
+            
             'created_at' => 'Created At',
             'created_by' => 'Created By',
             'updated_at' => 'Updated At',

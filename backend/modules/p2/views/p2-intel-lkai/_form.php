@@ -27,7 +27,7 @@ use kartik\checkbox\CheckboxX;
             <?php $form = ActiveForm::begin(); ?>
             <h2>Silahkan Pilih Dokumen Sumber </h2>
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-12">
                     
                     <?=
                     $form->field($model, 'dok_sumber_lppi')->widget(CheckboxX::classname(), [
@@ -40,7 +40,7 @@ use kartik\checkbox\CheckboxX;
 
             </div>
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-12">
                     <?=
                     $form->field($model, 'dok_sumber_lpti')->widget(CheckboxX::classname(), [
                         'initInputType' => CheckboxX::INPUT_CHECKBOX,
@@ -52,7 +52,7 @@ use kartik\checkbox\CheckboxX;
 
             </div>
             <div class="row">
-                <div class="col-md-4">
+                <div class="col-md-12">
                     <?=
                     $form->field($model, 'dok_sumber_npi')->widget(CheckboxX::classname(), [
                         'initInputType' => CheckboxX::INPUT_CHECKBOX,

@@ -91,7 +91,6 @@ if (Yii::$app->controller->action->id === 'login') {
 
                             <!-- sidebar menu -->
                             <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-
                                 <div class="menu_section">
                                     <h3>General</h3>
 
@@ -625,7 +624,7 @@ if (Yii::$app->controller->action->id === 'login') {
                     <footer>
                         <div class="pull-right">
                             Sulbagtara Intelligence Operation Support System  <a href="#" rel="nofollow" target="_blank">@Tim IT Sulbagtara-2022</a><br />
-                            
+
                         </div>
                         <div class="clearfix"></div>
                     </footer>
