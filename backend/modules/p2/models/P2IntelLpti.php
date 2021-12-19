@@ -99,6 +99,9 @@ class P2IntelLpti extends \yii\db\ActiveRecord
         return $this->hasOne(P2IntelStpi::className(), ['id' => 'stpi_id']);
     }
     
+    public function getKantor() {
+        return $this->hasOne(\backend\modules\setting\models\DbKantor::className(), ['kd_kantor' => 'kd_kantor']);
+    }
      
 
     public function behaviors() {

@@ -141,6 +141,43 @@ class P2IntelLkaiController extends Controller {
                     'model' => $model,
         ]);
     }
+    /**
+     * Deletes an existing P2IntelLkai model.
+     * Ambil nomor surat
+     * @param int $id ID
+     * @return mixed
+     * @throws NotFoundHttpException if the model cannot be found
+     */
+    
+    public function actionAmbilNoLkai($id) {
+        $model = $this->findModel($id);
+
+        //buat surat
+        $surat = new \backend\modules\p2\models\P2IntelLkaiNosurat();
+        $surat->tgl_lkai = date('Y-m-d');
+        $surat->lkai_id = $id;
+        $surat->save();
+
+        $nomorsurat = \backend\modules\p2\models\P2IntelLkaiNosurat::find()
+                ->where(['lkai_id' => $id])
+                ->one();
+
+        $nomorsuratambil = substr($nomorsurat->no_lkai, 0, 3);
+        $nomorsurat->no_lkai_nomor = $nomorsuratambil;
+        $nomorsurat->save();
+
+
+        $model->no_lkai = $nomorsuratambil;
+        $model->tgl_lkai = $nomorsurat->tgl_lkai;
+        $model->save();
+
+
+        \Yii::$app->getSession()->setFlash('success', 'Nomor Surat Berhasil di simpan');
+        return $this->redirect(['view', 'id' => $model->id]);
+        return $this->render('view', [
+                    'model' => $this->findModel($id),
+        ]);
+    }
 
     /**
      * Deletes an existing P2IntelLkai model.
@@ -155,6 +192,7 @@ class P2IntelLkaiController extends Controller {
         return $this->redirect(['index']);
     }
 
+    
     /**
      * Finds the P2IntelLkai model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.

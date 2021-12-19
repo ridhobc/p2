@@ -227,15 +227,19 @@ if (Yii::$app->controller->action->id === 'login') {
                                                                     ],
                                                                     [
                                                                         "label" => "NHI",
-                                                                        "url" => ["nhi/index"],
+                                                                        "url" => ["/p2/p2-intel-nhi/index"],
                                                                     ],
                                                                     [
                                                                         "label" => "NI",
-                                                                        "url" => ["ni/index"],
+                                                                        "url" => ["/p2/p2-intel-ni/index"],
                                                                     ],
                                                                     [
                                                                         "label" => "PSA",
-                                                                        "url" => ["psa/index"],
+                                                                        "url" => ["/p2/p2-intel-psa/index"],
+                                                                    ],
+                                                                    [
+                                                                        "label" => "NP",
+                                                                        "url" => ["/p2/p2-intel-np/index"],
                                                                     ],
                                                                 ],
                                                             ],
@@ -245,31 +249,35 @@ if (Yii::$app->controller->action->id === 'login') {
                                                                 "items" => [
                                                                     [
                                                                         "label" => "LI 1",
-                                                                        "url" => ["li1/index"],
+                                                                        "url" => ["/p2/p2-indak-li/index"],
                                                                     ],
                                                                     [
                                                                         "label" => "LAPP",
-                                                                        "url" => ["lapp/index"],
+                                                                        "url" => ["/p2/p2-indak-lapp/index"],
                                                                     ],
                                                                     [
                                                                         "label" => "NPI",
-                                                                        "url" => ["npi/index"],
+                                                                        "url" => ["/p2/p2-indak-npi/index"],
+                                                                    ],
+                                                                    [
+                                                                        "label" => "MPP",
+                                                                        "url" => ["/p2/p2-indak-mpp/index"],
                                                                     ],
                                                                     [
                                                                         "label" => "SBP",
-                                                                        "url" => ["sbp/index"],
+                                                                        "url" => ["/p2/p2-indak-sbp/index"],
                                                                     ],
                                                                     [
                                                                         "label" => "LPTP",
-                                                                        "url" => ["lptp/index"],
+                                                                        "url" => ["/p2/p2-indak-lptp/index"],
                                                                     ],
                                                                     [
                                                                         "label" => "LPHP",
-                                                                        "url" => ["lphp/index"],
+                                                                        "url" => ["/p2/p2-indak-lphp/index"],
                                                                     ],
                                                                     [
                                                                         "label" => "LP",
-                                                                        "url" => ["lp/index"],
+                                                                        "url" => ["/p2/p2-indak-lp/index"],
                                                                     ],
                                                                 ],
                                                             ],
@@ -279,15 +287,27 @@ if (Yii::$app->controller->action->id === 'login') {
                                                                 "items" => [
                                                                     [
                                                                         "label" => "LP Perkara",
-                                                                        "url" => ["lpp/index"],
+                                                                        "url" => ["/p2/p2-sidik-lpp/index"],
                                                                     ],
                                                                     [
                                                                         "label" => "LP Formal",
-                                                                        "url" => ["lpf/index"],
+                                                                        "url" => ["/p2/p2-sidik-lpf/index"],
                                                                     ],
                                                                     [
-                                                                        "label" => "LPD Unit Lain",
-                                                                        "url" => ["lpdul/index"],
+                                                                        "label" => "LP-1",
+                                                                        "url" => ["/p2/p2-sidik-lp1/index"],
+                                                                    ],
+                                                                    [
+                                                                        "label" => "SPLIT",
+                                                                        "url" => ["/p2/p2-sidik-split/index"],
+                                                                    ],
+                                                                    [
+                                                                        "label" => "LHP",
+                                                                        "url" => ["/p2/p2-sidik-lhp/index"],
+                                                                    ],
+                                                                    [
+                                                                        "label" => "LRP",
+                                                                        "url" => ["/p2/p2-sidik-lrp/index"],
                                                                     ],
                                                                 ],
                                                             ],

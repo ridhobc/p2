@@ -7,7 +7,7 @@ use backend\modules\setting\models\P2KategoriObjekSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
+use Yii;
 /**
  * P2KategoriObjekController implements the CRUD actions for P2KategoriObjek model.
  */
@@ -72,7 +72,7 @@ class P2KategoriObjekController extends Controller
             if ($model->load($this->request->post()) && $model->save()) {
                 
                  Yii::$app->session->setFlash('success', 'berhasil direkam');
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['index']);
             }
         } else {
             $model->loadDefaultValues();
@@ -96,7 +96,7 @@ class P2KategoriObjekController extends Controller
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
              Yii::$app->session->setFlash('warning', 'berhasil diubah');
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index']);
         }
 
         return $this->render('update', [

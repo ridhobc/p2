@@ -14,8 +14,8 @@ $this->params['breadcrumbs'][] = ['label' => 'LKAI', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <?php
-$cekno1 = \backend\modules\p2\models\P2IntelLptiNosurat::find()
-        ->where(['lpti_id' => $model->id])
+$cekno1 = \backend\modules\p2\models\P2IntelLkaiNosurat::find()
+        ->where(['lkai_id' => $model->id])
         ->count();
 ?>
 <h3 class="box-title">
@@ -25,7 +25,7 @@ $cekno1 = \backend\modules\p2\models\P2IntelLptiNosurat::find()
     if ($cekno1 > '0') {
         
     } else {
-        echo Html::a('Ambil Nomor', ['ambil-no-lpti', 'id' => $model->id], ['class' => 'btn btn-danger']);
+        echo Html::a('Ambil Nomor', ['ambil-no-lkai', 'id' => $model->id], ['class' => 'btn btn-danger']);
     }
     ?>
     <i class="fa fa-file "></i>  <?php echo Yii::t('app', 'LKAI'); ?></h3>         

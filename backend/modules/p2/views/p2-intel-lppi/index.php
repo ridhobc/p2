@@ -12,7 +12,7 @@ use kartik\export\ExportMenu;
 use yii\helpers\Url;
 use kartik\money\MaskMoney;
 
-$this->title = Yii::t('app', 'Laporan Pelaksanaan Tugas Intelijen');
+$this->title = Yii::t('app', 'Lembar Pengumpulan dan Penilaian Informasi');
 $this->params['breadcrumbs'][] = $this->title;
 $this->registerCss(".disp-count{cursor:default;} .disp-count:hover {background-color:none !important}");
 ?>
@@ -101,7 +101,7 @@ $gridColumns = [
             'pjaxSettings' => ['options' => ['id' => 'kv-pjax-container']],
             'panel' => [
                 'type' => GridView::TYPE_PRIMARY,
-                'heading' => '<h3 class="panel-title"><i class="glyphicon glyphicon-file"></i> Laporan Pelaksanaan Tugas Intelijen</h3>',
+                'heading' => '<h3 class="panel-title"><i class="glyphicon glyphicon-file"></i> LPPI</h3>',
             ],
 // your toolbar can include the additional full export menu
             'toolbar' => [

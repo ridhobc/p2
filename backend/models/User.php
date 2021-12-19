@@ -107,8 +107,8 @@ class User extends \yii\db\ActiveRecord {
     
 
     public static function getPhoto($imgName) {
-        $dispImg = is_file(Yii::getAlias('@webroot') . '/user/' . $imgName) ? true : false;
-        return Yii::getAlias('@web') . "/user/" . (($dispImg) ? $imgName : "no-photo.png");
+        $dispImg = is_file(Yii::getAlias('@webroot') . '/web/user/' . $imgName) ? true : false;
+        return Yii::getAlias('@web') . "/web/user/" . (($dispImg) ? $imgName : "no-photo.png");
     }
 
     public function getChatname()
