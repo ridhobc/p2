@@ -48,39 +48,38 @@ class UserController extends Controller {
      * @return mixed
      */
     public function actionIndex() {
-        
-            $searchModel = new UserSearch();
-            $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
-            return $this->render('index', [
-                        'searchModel' => $searchModel,
-                        'dataProvider' => $dataProvider,
-            ]);
-       
+        $searchModel = new UserSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+
+        return $this->render('index', [
+                    'searchModel' => $searchModel,
+                    'dataProvider' => $dataProvider,
+        ]);
     }
 
     public function actionAktif($id) {
         if (Yii::$app->user->can('create-user')) {
-        $model = \backend\models\Userbanned::findOne($id);
-        $model->status = 10;
+            $model = \backend\models\Userbanned::findOne($id);
+            $model->status = 10;
 
-        $model->save();
-        \Yii::$app->getSession()->setFlash('success', 'User siap digunakan!');
-        return $this->redirect(['index']);
-    } else {
+            $model->save();
+            \Yii::$app->getSession()->setFlash('success', 'User siap digunakan!');
+            return $this->redirect(['index']);
+        } else {
             throw new ForbiddenHttpException;
         }
     }
 
     public function actionBanned($id) {
         if (Yii::$app->user->can('create-user')) {
-        $model = \backend\models\Userbanned::findOne($id);
-        $model->status = 0;
+            $model = \backend\models\Userbanned::findOne($id);
+            $model->status = 0;
 
-        $model->save();
-        \Yii::$app->getSession()->setFlash('success', 'user berhasil di non aktifkan');
-        return $this->redirect(['index']);
-    } else {
+            $model->save();
+            \Yii::$app->getSession()->setFlash('success', 'user berhasil di non aktifkan');
+            return $this->redirect(['index']);
+        } else {
             throw new ForbiddenHttpException;
         }
     }
@@ -92,10 +91,10 @@ class UserController extends Controller {
      */
     public function actionView($id) {
         if (Yii::$app->user->can('create-user')) {
-        return $this->render('view', [
-                    'model' => $this->findModel($id),
-        ]);
-    } else {
+            return $this->render('view', [
+                        'model' => $this->findModel($id),
+            ]);
+        } else {
             throw new ForbiddenHttpException;
         }
     }
@@ -265,10 +264,10 @@ class UserController extends Controller {
             $model = $this->findModel($id);
 
             if ($model->load(Yii::$app->request->post())) {
-                
-                    $password = '123456abc';
-                    $model->password_hash = Yii::$app->security->generatePasswordHash($password);
-               
+
+                $password = '123456abc';
+                $model->password_hash = Yii::$app->security->generatePasswordHash($password);
+
                 Yii::$app->session->setFlash('success', 'Reset Password berhasil diubah ke password standard');
                 $model->save();
                 return $this->redirect(['index']);
@@ -281,7 +280,6 @@ class UserController extends Controller {
             throw new ForbiddenHttpException;
         }
     }
-    
 
     /* -------------  update Employee's Profice picture ---------------  */
 
@@ -356,6 +354,24 @@ class UserController extends Controller {
                         'model' => $model
             ]);
         }
+    }
+
+    public function actionEmail() {
+        $message = \Yii::$app->mailer->compose();
+        $message->setFrom('ridhobc@gmail.com');
+        $message->setSubject('Tess Email');
+        $message->setTo('ridhobc@gmail.com');
+        $message->setTextBody('test content ridwan Nento');
+
+        if ($message->send()) {
+            \Yii::$app->getSession()->setFlash('success', 'terkirim');
+            return $this->redirect(['index']);
+        }else {
+            \Yii::$app->getSession()->setFlash('warning', 'gagal'.$message->send());
+            return $this->redirect(['index']);
+        }
+
+        
     }
 
     /**

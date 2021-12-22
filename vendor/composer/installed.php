@@ -1,11 +1,11 @@
 <?php return array(
     'root' => array(
-        'pretty_version' => '1.0.0+no-version-set',
-        'version' => '1.0.0.0',
+        'pretty_version' => 'dev-main',
+        'version' => 'dev-main',
         'type' => 'project',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => NULL,
+        'reference' => 'a739497c39f91cd8dee37a80ce846dc1981c44e3',
         'name' => 'yiisoft/yii2-app-advanced',
         'dev' => true,
     ),
@@ -1317,6 +1317,15 @@
             'reference' => '45f2b83ceed5231afa7b3d5b12b58ad335edd82e',
             'dev_requirement' => false,
         ),
+        'sendinblue/api-v3-sdk' => array(
+            'pretty_version' => 'v6.4.0',
+            'version' => '6.4.0.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../sendinblue/api-v3-sdk',
+            'aliases' => array(),
+            'reference' => '7367053380e9d9a943969289e97d8015e85bb0c9',
+            'dev_requirement' => false,
+        ),
         'setasign/fpdi' => array(
             'pretty_version' => 'v2.3.6',
             'version' => '2.3.6.0',
@@ -1324,6 +1333,15 @@
             'install_path' => __DIR__ . '/../setasign/fpdi',
             'aliases' => array(),
             'reference' => '6231e315f73e4f62d72b73f3d6d78ff0eed93c31',
+            'dev_requirement' => false,
+        ),
+        'silverback/yii2-sendinblue' => array(
+            'pretty_version' => '1.0.1',
+            'version' => '1.0.1.0',
+            'type' => 'yii2-extension',
+            'install_path' => __DIR__ . '/../silverback/yii2-sendinblue',
+            'aliases' => array(),
+            'reference' => 'f3c7f24aa348053e9e77e54fcff18bedcc9e9a89',
             'dev_requirement' => false,
         ),
         'sintret/yii2-chat-adminlte' => array(
@@ -1596,12 +1614,12 @@
             'dev_requirement' => false,
         ),
         'yiisoft/yii2-app-advanced' => array(
-            'pretty_version' => '1.0.0+no-version-set',
-            'version' => '1.0.0.0',
+            'pretty_version' => 'dev-main',
+            'version' => 'dev-main',
             'type' => 'project',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => NULL,
+            'reference' => 'a739497c39f91cd8dee37a80ce846dc1981c44e3',
             'dev_requirement' => false,
         ),
         'yiisoft/yii2-bootstrap' => array(

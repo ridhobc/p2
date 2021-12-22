@@ -20,18 +20,8 @@ return [
 //            'nullDisplay' => '',
 //        ],
 
-        'mailer' => [
-            'class' => 'yii\swiftmailer\Mailer',
-            'useFileTransport' => false, //for the testing purpose, you need to enable this
-            'transport' => [
-                'class' => 'Swift_SmtpTransport',
-                'host' => 'smtp.gmail.com',
-                'username' => 'ridhobc@gmail.com',
-                'password' => '##',
-                'port' => '465',
-                'encryption' => 'tls',
-            ],
-        ],
+    
+      
         'request' => [
             'cookieValidationKey' => 'JDqkJaMgIITAKcsJY6yvLQdM9jf7WghX',
         ],

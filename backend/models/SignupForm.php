@@ -42,23 +42,8 @@ class SignupForm extends Model {
             ['password', 'string', 'min' => 6],
             ['name', 'required'],
             ['name', 'string', 'min' => 6],
-            ['gender', 'required'],
-            ['gender', 'integer'],
-            ['born', 'required'],
-            ['born', 'string', 'min' => 6],
-            ['religion_id', 'required'],
-            ['religion_id', 'integer'],
-            ['unit_id', 'required'],
-            ['unit_id', 'integer'],
-            ['birthday', 'required'],
-            ['birthday', 'safe'],
             ['nip', 'required'],
             ['nip', 'string', 'min' => 18],
-            ['phone', 'required'],
-            ['phone', 'string', 'min' => 6],
-            ['role', 'required'],
-            ['role', 'in', 'range' => ['stafppk']],
-           
             ['status', 'integer'],
         ];
     }
@@ -69,15 +54,8 @@ class SignupForm extends Model {
             'username' => 'Username',
             'password' => 'Password',
             'name' => 'Nama Lengkap',
-            'gender' => 'L/P',
-            'born' => 'Tempat Lahir',
-            'birthday' => 'Tgl Lahir',
-            'phone' => 'No HP',
             'email' => 'Email',
-            'religion_id' => 'Agama',
-            'role' => 'Role',
             'nip' => 'NIP',
-            'unit_id' => 'Unit',
         ];
     }
 
@@ -94,16 +72,9 @@ class SignupForm extends Model {
             $user->setPassword($this->password);
             $user->generateAuthKey();
             $user->name = $this->name;
-            $user->gender = $this->gender;
-            $user->born = $this->born;
-            $user->birthday = $this->birthday;
-            $user->phone = $this->phone;
-            $user->religion_id = $this->religion_id;
-            $user->role = $this->role;
             $user->nip = $this->nip;
-            $user->unit_id = $this->unit_id;
             $user->status = 0;
-            
+
             if ($user->save()) {
                 return $user;
             }

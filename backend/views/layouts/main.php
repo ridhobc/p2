@@ -16,7 +16,7 @@ use yii2mod\alert\Alert;
 /* @var $this \yii\web\View */
 /* @var $content string */
 
-if (Yii::$app->controller->action->id === 'login') {
+if (Yii::$app->controller->action->id === 'login' ) {
     /**
      * Do not use this code in your template. Remove it. 
      * Instead, use the code  $this->layout = '//main-login'; in your controller.
@@ -24,7 +24,25 @@ if (Yii::$app->controller->action->id === 'login') {
     echo $this->render(
             'main-login', ['content' => $content]
     );
-} else {
+} else if  (Yii::$app->controller->action->id === 'signup'  || Yii::$app->controller->action->id === 'requestPasswordResetToken' || Yii::$app->controller->action->id === 'request-password-reset'  )   {
+    /**
+     * Do not use this code in your template. Remove it. 
+     * Instead, use the code  $this->layout = '//main-login'; in your controller.
+     */
+    echo $this->render(
+            'main_login_new', ['content' => $content]
+    );
+}
+else if  (Yii::$app->controller->action->id === 'mail' )   {
+    /**
+     * Do not use this code in your template. Remove it. 
+     * Instead, use the code  $this->layout = '//main-login'; in your controller.
+     */
+    echo $this->render(
+            'main_login_new', ['content' => $content]
+    );
+}
+else {
     if (class_exists('backend\assets\AppAsset')) {
 //        yiister\gentelella\assets\Asset::register($this);
         backend\assets\AppAsset::register($this);
@@ -99,6 +117,7 @@ if (Yii::$app->controller->action->id === 'login') {
                                             [
                                                 "items" => [
                                                     ["label" => "Home", "url" => ["/site/index"], "icon" => "home"],
+                                                    ["label" => "Email", "url" => ["email/index"], "icon" => "mail"],
                                                     [
                                                         "label" => "Admin",
                                                         "url" => "#",

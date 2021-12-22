@@ -20,7 +20,7 @@ $fieldOptions2 = [
 ];
 ?>
 <style type="text/css">
-  
+
     #login .container #login-row #login-column #login-box {
         margin-top: 120px;
         max-width: 600px;
@@ -46,16 +46,24 @@ $fieldOptions2 = [
         background: transparent;
     }
 </style>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
 <div class="container">
     <div class="row justify-content-center align-items-center">
         <aside class="col-sm-4">
 
             <div class="card">
-                <article class="card-body">
-                    <a href="" class="float-right btn btn-outline-primary">Sign up</a>
+                <article class="card-body">                    
+                    <?= Html::a('SIGN UP', ['signup'], ['class' => 'float-right btn btn-outline-primary']) ?>
                     <h4 class="card-title mb-4 mt-1">Sign in</h4>
                     <div class="login-box-body panel-body ">
-                        <p class="login-box-msg">Form Login </p>
+                        <p class="login-box-msg">Intelligence Operation Support System Sulbagtara</p>
 
                         <?php $form = ActiveForm::begin(['id' => 'login-form', 'enableClientValidation' => false]); ?>
 
@@ -72,7 +80,7 @@ $fieldOptions2 = [
                                 ->label(false)
                                 ->passwordInput(['placeholder' => $model->getAttributeLabel('password')])
                         ?>
-
+                        <br/>
                         <div class="row">
                             <div class="col-xs-8">
                                 <?= $form->field($model, 'rememberMe')->checkbox() ?>
@@ -86,17 +94,18 @@ $fieldOptions2 = [
                         <?php ActiveForm::end(); ?>
 
                     </div>
+                    <br/>
+                    <br/>
+                    <br/>
+
                     <div class="panel-footer" >
                         <div class="margin text-center">
-                            <?php
-                            if (Yii::$app->user->isGuest) {
-                                echo \yii\helpers\Html::a('<span> Go Home </span>', '#');
-                            }
-                            ?>
-                        </div>
-                        <a href="#">I forgot my password</a><br>
-                        <a href="<?= \yii\helpers\Url::to(['index']) ?>" class="text-center">Register a new membership</a>
+                            <?= Html::a('LUPA PASSWORD', ['request-password-reset'], ['class' => 'float-left btn btn-outline-primary']) ?>.
+                        </div>                    
                     </div>
+                    <br/>
+                    <br/>
+
                 </article>
             </div> <!-- card.// -->
     </div>

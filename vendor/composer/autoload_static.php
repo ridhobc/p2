@@ -38,6 +38,7 @@ class ComposerStaticInit72e2924f5a19d01c36573f6b1469a740
         array (
             'yiister\\gentelella\\' => 19,
             'yii\\swiftmailer\\' => 16,
+            'yii\\sendinblue\\' => 15,
             'yii\\jui\\' => 8,
             'yii\\httpclient\\' => 15,
             'yii\\gii\\' => 8,
@@ -184,6 +185,7 @@ class ComposerStaticInit72e2924f5a19d01c36573f6b1469a740
             'Symfony\\Component\\CssSelector\\' => 30,
             'Symfony\\Component\\Console\\' => 26,
             'Symfony\\Component\\BrowserKit\\' => 29,
+            'SendinBlue\\Client\\' => 18,
         ),
         'P' => 
         array (
@@ -250,6 +252,10 @@ class ComposerStaticInit72e2924f5a19d01c36573f6b1469a740
         'yii\\swiftmailer\\' => 
         array (
             0 => __DIR__ . '/..' . '/yiisoft/yii2-swiftmailer/src',
+        ),
+        'yii\\sendinblue\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/silverback/yii2-sendinblue/src',
         ),
         'yii\\jui\\' => 
         array (
@@ -632,6 +638,10 @@ class ComposerStaticInit72e2924f5a19d01c36573f6b1469a740
         'Symfony\\Component\\BrowserKit\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/browser-kit',
+        ),
+        'SendinBlue\\Client\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/sendinblue/api-v3-sdk/lib',
         ),
         'Psr\\SimpleCache\\' => 
         array (

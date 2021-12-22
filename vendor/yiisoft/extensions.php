@@ -582,4 +582,13 @@ return array (
       '@kartik/checkbox' => $vendorDir . '/kartik-v/yii2-checkbox-x/src',
     ),
   ),
+  'silverback/yii2-sendinblue' => 
+  array (
+    'name' => 'silverback/yii2-sendinblue',
+    'version' => '1.0.1.0',
+    'alias' => 
+    array (
+      '@yii/sendinblue' => $vendorDir . '/silverback/yii2-sendinblue/src',
+    ),
+  ),
 );
